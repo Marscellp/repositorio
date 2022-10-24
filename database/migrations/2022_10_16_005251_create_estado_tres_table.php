@@ -1,0 +1,38 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('estado_tres', function (Blueprint $table) {
+            $table->id();
+            $table->text('identificacion')->nullable();
+            $table->text('formulacion')->nullable();
+            $table->text('metodologia')->nullable();
+            //
+            $table->unsignedBigInteger('completos_id');
+            $table->foreign('completos_id')->references('id')->on('completos'); 
+            //
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('estado_tres');
+    }
+};
